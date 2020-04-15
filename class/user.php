@@ -71,6 +71,7 @@ class user extends bdd{
     }
 
     public function tache($titre,$description){
+        //TODO : gérer l'enregistrement des tâches pour que l'utilisateur connecté puisse retrouver son tableau lors de la prochaine connexion (charger les taches selon la colonne dans todolist.php)
         if($titre!= NULL && $description!= NULL){
             //$this->connect();
             //$this->execute("INSERT INTO taches (id_utilisateurs,titre,date_creation,description) VALUES('$this->id','$titre',NOW(),'$description')");

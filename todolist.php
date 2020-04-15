@@ -41,20 +41,28 @@ if($_SESSION['user']->isConnected()!==true)
       <h2>To-Do</h2>
       <section class="tache">
           <div class="info_tache">
-            <p>XX/XX : Nom tâche</p>
+            <p>Nom tâche</p>
             <p class="etat"><img class="icone" src="img/non.png"></p>
           </div>
-        <p class="description">blabla</p>
+          <div class="descr_tache">
+            <p class="date_creation">Créée le : 10/04/2020</p>
+            <p class="etat_txt">Etat : en cours</p>
+            <p class="description">Description : blabla</p>
+          </div>
       </section>
     </section>
     <section class="colonne" id="done">
       <h2>Done</h2>
       <section class="tache">
           <div class="info_tache">
-          <p>XX/XX : Nom tâche</p>
-          <p class="etat"><img class="icone" src="img/oui.png"></p>
+            <p>Nom tâche</p>
+            <p class="etat"><img class="icone" src="img/oui.png"></p>
           </div>
-        <p class="description">blabla</p>
+          <div class="descr_tache">
+            <p class="date_creation">Créée le : 08/04/2020</p>
+            <p class="etat_txt">Etat : terminée le 12/04/2020</p>
+            <p class="description">Description : blabla</p>
+          </div>
       </section>
     </section>
   </section>

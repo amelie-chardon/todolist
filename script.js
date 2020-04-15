@@ -145,8 +145,8 @@ $("#formtache").click(function new_tache(){
 
         if(result=="ok"){
           //On ajoute la tâche au tableau
-          $("#todo").append("<section class='tache'><div class='info_tache'><p>"+date+" : "+tit+"</p><p class='etat'><img class='icone' src='img/non.png'></p></div><p class='description' style>"+descr+"</p></section>");
-          
+          $("#todo").append("<section class='tache'><div class='info_tache'><p class='titre'>"+tit+"</p><p class='etat'><img class='icone' src='img/non.png'></p></div><div class='descr_tache'><p class='date_creation'>Créée le : "+date+"</p><p class='etat_txt'>Etat : en cours</p><p class='description' style>"+descr+"</p></div></section>");
+
           //$(".description").hide();
           //$("#todo").append($("<section>",{class:"tache"}));
           //$("#todo:last-child").append($("<div>",{class:"info_tache"}));
@@ -175,20 +175,11 @@ $("#formtache").click(function new_tache(){
 
 //Quand on clique sur une tâche
 $('.section_wrap_col').on("click", ".tache", function(){
-  $(this).children(".description").toggle();
+  $(this).children(".descr_tache").toggle();
   });
 
-/*$(".tache").on("click", function(){
-  $(this).children(".description").toggle();
-});
 
-/*$(".tache").click(function(){
-  $(this).children(".description").toggle();
-});
-*/
-
-
-//Quand on clique sur une tâche
+//Quand on clique sur l'icone d'une tâche
 $('.section_wrap_col').on("click", ".icone",function(){
   //On récupère la source de l'image
   var src = ($(this).attr('src'))
@@ -198,9 +189,14 @@ $('.section_wrap_col').on("click", ".icone",function(){
     //Si l'utilisateur veut la marquer 'done'
     if(confirm("Marquer cette tâche comme 'done' ?"))
     {
+      //On change l'état
+      date=new Date();
+      date=date.toLocaleDateString();
+      $(this).parent().parent().parent().children().children(".etat_txt").html("Etat : terminée le "+date);
+      
       //On change l'icone et on la change de colonne
       $(this).attr('src','img/oui.png');
-      $(this).parent().parent().parent().appendTo($("#done"));
+     $(this).parent().parent().parent().appendTo($("#done"));
     }
   }
   //Si la tache est 'done'
@@ -209,9 +205,16 @@ $('.section_wrap_col').on("click", ".icone",function(){
     //Si l'utilisateur veut la marquer 'todo'
     if(confirm("Marquer cette tâche comme 'to do' ?"))
     {
+      //On change l'état
+      $(this).parent().parent().parent().children().children(".etat_txt").html("Etat : en cours");
+
       //On change l'icone et on la change de colonne
       $(this).attr('src','img/non.png');
       $(this).parent().parent().parent().appendTo($("#todo"));
     }
   }
 });
+
+//TODO : rendre "draggable" les taches pour les passer d'une colonne à une autre
+
+//TODO (optionnel) : ajouter gestion par plusieurs utilisateurs

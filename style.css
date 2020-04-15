@@ -279,7 +279,7 @@ footer a, footer p
     align-content: center;
     align-items: center;
     height: 50vh;
-    width:18vw;
+    width:30vw;
     border-radius: 25px;
     border:dashed;
     background-color: #F3F4F6;
@@ -292,7 +292,7 @@ footer a, footer p
     background-color: white;
     border-radius: 25px;
     border-style: solid;
-    width: 15vw;
+    width: 27vw;
     justify-content: center;
     justify-items: center;
     padding:10px;

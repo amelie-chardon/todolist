@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 16 avr. 2020 à 20:09
+-- Généré le :  jeu. 16 avr. 2020 à 22:31
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -39,14 +39,15 @@ CREATE TABLE IF NOT EXISTS `taches` (
   `description` varchar(1000) NOT NULL,
   `etat` varchar(25) NOT NULL DEFAULT 'todo',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `taches`
 --
 
 INSERT INTO `taches` (`id`, `id_utilisateurs`, `titre`, `date_creation`, `description`, `etat`) VALUES
-(9, 7, 'Test', '2020-04-16', 'Test', 'DONE');
+(9, 7, 'Test', '2020-04-16', 'Test', 'DONE'),
+(10, 7, 'test2', '2020-04-17', 'test2', 'todo');
 
 -- --------------------------------------------------------
 

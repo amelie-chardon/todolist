@@ -1,11 +1,17 @@
 <?php
 
 class user extends bdd{
-
+//user
     private $id = NULL;
     private $mail = NULL;
     private $prenom = NULL;
     private $nom = NULL;
+   //taches
+    private $id_taches = NULL;
+    private $etat = NULL;
+    private $titre = NULL;
+    private $description = NULL;
+    private $date = NULL;
 
 
     public function inscription($prenom,$nom,$mdp,$confmdp,$mail){
@@ -71,9 +77,10 @@ class user extends bdd{
     }
 
     public function tache($titre,$description){
+        //TODO : gérer l'enregistrement des tâches pour que l'utilisateur connecté puisse retrouver son tableau lors de la prochaine connexion (charger les taches selon la colonne dans todolist.php)
         if($titre!= NULL && $description!= NULL){
-            //$this->connect();
-            //$this->execute("INSERT INTO taches (id_utilisateurs,titre,date_creation,description) VALUES('$this->id','$titre',NOW(),'$description')");
+            $this->connect();
+            $this->execute("INSERT INTO taches (id_utilisateurs,titre,date_creation,description) VALUES('$this->id','$titre',NOW(),'$description')");
             return "ok";
         }
         else
@@ -81,6 +88,62 @@ class user extends bdd{
             return "empty";
         };
     }
+
+    public function recup_tache_todo(){
+        //Recupération données dans la BDD des TODO en cours
+        $this->connect();
+        $fetch=$this->execute("SELECT titre,date_creation,description,etat FROM taches WHERE etat = 'todo' ");
+
+        if($fetch==NULL){
+            return "0tache";
+        }
+        
+            else{
+                foreach ($fetch as list($titre,$date,$description,$etat)){
+                
+                
+                $this->titre = $titre;
+                $this->date = $date;
+                $this->etat = $etat;
+                $this->description = $description;
+                }
+            }
+       
+        
+        }
+        public function recup_tache_done(){
+            //Recupération données dans la BDD des TODO en cours
+            $this->connect();
+            $fetch=$this->execute("SELECT titre,date_creation,description,etat FROM taches WHERE etat = 'DONE' ");
+    
+            if($fetch==NULL){
+                return "0tache";
+            }
+            
+                else{
+                    foreach ($fetch as list($titre,$date,$description,$etat)){
+                    
+                    
+                    $this->titre = $titre;
+                    $this->date = $date;
+                    $this->etat = $etat;
+                    $this->description = $description;
+                    }
+                }
+           
+            
+            }
+        public function done_to_todo($id_taches){
+            //Cloture de taches dans la bdd ( passage en DONE)
+            $this->connect();
+            $update=$this->execute("UPDATE `taches` SET `etat` = 'TODO' WHERE `taches`.`id` = $id_taches");
+        }
+
+        public function todo_to_done($id_taches){
+            //Cloture de taches dans la bdd ( passage en DONE)
+            $this->connect();
+            $update=$this->execute("UPDATE `taches` SET `etat` = 'DONE' WHERE `taches`.`id` = $id_taches");
+        }
 
     //FONCTIONS GET//
 
@@ -108,6 +171,21 @@ class user extends bdd{
         return $this->nom;
     }
 
+    public function getEtat(){
+        return $this->etat;
+    }
 
+    public function gettitre(){
+        return $this->titre;
+    }
+    public function getdate(){
+        return $this->date;
+    }
+    public function getdescription(){
+        return $this->description;
+    }
+    public function getid_taches(){
+        return $this->id_taches;
+    }
 }
 ?>

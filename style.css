@@ -1,0 +1,390 @@
+
+/*GENERAL*/
+html
+{
+    margin:0;
+    padding: 0;
+    width: 100%;
+}
+
+body
+{
+    margin:0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    }
+
+main
+{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    flex-direction: column;
+    min-height: 80vh;
+    width: 100%;
+    flex-grow: 1;
+}
+
+h1
+{
+    display: flex;
+    font-size: 40px;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: 'Quicksand', sans-serif;
+}
+
+h2
+{
+    text-transform: uppercase;
+    font-family: 'Quicksand', sans-serif;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}
+
+form
+{
+    text-align: center;
+    margin:0;
+}
+
+p
+{
+    font-size:1.2em;
+}
+
+button, input
+{
+    margin:10px;
+    padding:15px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    box-shadow: none;
+}
+
+button
+{
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+button:hover 
+{
+    background-color: #FF746F;
+    box-shadow: 0px 15px 20px #7AA0CC;
+    color: white;
+    /*transform: translateY(-7px);*/
+}
+
+
+/*HEADER*/
+
+header
+{
+    display: flex;
+    width:100%;
+    height:12vh;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #317FED;
+}
+
+.logo
+{
+    margin:10px;
+}
+
+#logo-top
+{
+    height:8vh;
+}
+
+#logo-top{
+    max-width:150px;
+    max-height:150px;
+    margin: auto;
+}
+
+
+/*FOOTER*/
+
+footer
+{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0053B9;
+    color:white;
+    height:8vh;
+}
+
+footer a, footer p
+{
+    color:white;
+    font-family: 'Quicksand', sans-serif;
+    font-size:1em;
+}
+
+
+/*INDEX*/
+
+#index
+{
+    justify-content: space-evenly;
+    background-color:#F3F4F6;
+}
+
+
+.panneau
+{
+    margin:5px;
+    display:flex;
+    flex-direction:column ;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    height: 50vh;
+    width:45%;
+}
+
+.panneau img
+{
+    width: 35vw;
+}
+
+.text
+{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    color:black;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2em;
+    flex-grow:1;
+}
+
+.text ul
+{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: space-around;
+}
+
+.text li
+{
+    list-style-type: square;
+    margin:20px;
+
+}
+
+.section_wrap
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    justify-content: space-evenly;
+    align-content: space-between;
+}
+
+.bloc
+{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    max-width:25vw;
+    margin:10px;
+    padding:5px;
+}
+
+.bloc img
+{
+   width: 200px;
+   height: 200px;
+   margin:15px;
+}
+
+.bloc img:hover
+{
+    transform: scale(1.2);
+}
+
+.bloc_texte
+{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    max-width:25vw;
+    margin:10px;
+    padding:5px;
+}
+
+/*TO DO LIST*/
+
+#todolist
+{
+    justify-content: space-evenly;
+    background-color:#F3F4F6;
+}
+
+.section_wrap_col
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: auto;
+    justify-content: flex-start;
+    height: 50vh;
+    align-items: flex-start;
+    align-content: flex-start;
+    min-width: 50vw;
+}
+
+.colonne
+{
+    margin:10px;
+    display:flex;
+    flex-direction:column ;
+    justify-content: start ;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    height: 50vh;
+    width:30vw;
+    border-radius: 25px;
+    border:dashed;
+    background-color: #F3F4F6;
+}
+
+.tache
+{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 25px;
+    border-style: solid;
+    width: 27vw;
+    justify-content: center;
+    justify-items: center;
+    padding:10px;
+    align-content: center;
+    margin:2px;
+}
+
+.tache p, .info_tache p
+{
+    display: flex;
+    margin:2px;
+}
+
+.info_tache
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content:center;
+    align-items: center;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+.icone
+{
+    display: flex;
+    height: 30px;
+    width: 30px;
+}
+
+.boutons
+{
+    display: flex;
+    justify-content: center;
+}
+
+.new_tache
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: auto;
+    justify-content: center;
+    height: 50vh;
+    align-items: center;
+    align-content: center;
+    min-width: 50vw;
+}
+
+.description
+{
+    display: flex;
+}
+
+
+/*INSCRIPTION/CONNEXION*/
+
+.formulaire
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    max-width:25vw;
+    margin: auto;
+    padding:15px;
+    flex-grow:1;
+}
+
+.formulaire label
+{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    align-content:center;
+    justify-items:center;
+    max-width: 20vw;
+    font-size: 15px;
+}
+
+.formulaire input
+{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    align-content:center;
+    justify-items:center;
+    font-size: 15px;
+    max-width: 20vw;
+    color: rgb(22, 22, 22);
+}
+

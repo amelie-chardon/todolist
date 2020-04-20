@@ -94,8 +94,8 @@ class user extends bdd{
         $this->connect();
         $fetch=$this->execute("SELECT titre,date_creation,description,etat FROM taches WHERE etat = 'todo' ");
 
-        if($fetch==NULL){
-            return "0tache";
+        if($fetch==null){
+           
         }
         
             else{
@@ -114,10 +114,10 @@ class user extends bdd{
         public function recup_tache_done(){
             //Recupération données dans la BDD des TODO en cours
             $this->connect();
-            $fetch=$this->execute("SELECT titre,date_creation,description,etat FROM taches WHERE etat = 'DONE' ");
+            $fetch=$this->execute("SELECT titre,date_creation,description,etat FROM taches WHERE etat = 'done' ");
     
-            if($fetch==NULL){
-                return "0tache";
+            if($fetch==null){
+                echo "Aucune tache encore reussi !";
             }
             
                 else{
@@ -133,17 +133,25 @@ class user extends bdd{
            
             
             }
-        public function done_to_todo($id_taches){
-            //Cloture de taches dans la bdd ( passage en DONE)
-            $this->connect();
-            $update=$this->execute("UPDATE `taches` SET `etat` = 'TODO' WHERE `taches`.`id` = $id_taches");
+        public function change_pouet ($id_taches,$etat){
+            //passage du todo -> done & done->todo
+            $connect=mysqli_connect('localhost', 'root', '','tdl');
+            $select="SELECT id,etat FROM taches WHERE  `taches`.`id` = $id_taches";
+            $query=mysqli_query($connect,$select);
+            $fetch=mysqli_fetch_all($query);
+
+            foreach ($fetch as list($id_taches,$etat)){
+
+            if($etat=="todo"){
+                $this->execute("UPDATE `taches` SET `etat` = 'done' WHERE `taches`.`id` = $id_taches");
+            }else{
+                $this->execute("UPDATE `taches` SET `etat` = 'todo' WHERE `taches`.`id` = $id_taches");
+            }
+        }
+            
         }
 
-        public function todo_to_done($id_taches){
-            //Cloture de taches dans la bdd ( passage en DONE)
-            $this->connect();
-            $update=$this->execute("UPDATE `taches` SET `etat` = 'DONE' WHERE `taches`.`id` = $id_taches");
-        }
+       
 
     //FONCTIONS GET//
 

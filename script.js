@@ -180,15 +180,18 @@ $('.section_wrap_col').on("click", ".tache", function(){
 
 
 //Quand on clique sur l'icone d'une tâche
-$('.section_wrap_col').on("click", ".icone",function(){
+$('.section_wrap_col').on("click", ".icone",function change_pouet(){
   //On récupère la source de l'image
   var src = ($(this).attr('src'))
   //Si la tache est 'to do'
   if (src=== 'img/non.png')
   {
+   // $('#todo').on("click",".icone",function todo_to_done(){
     //Si l'utilisateur veut la marquer 'done'
     if(confirm("Marquer cette tâche comme 'done' ?"))
     {
+      
+    
       //On change l'état
       date=new Date();
       date=date.toLocaleDateString();
@@ -198,7 +201,9 @@ $('.section_wrap_col').on("click", ".icone",function(){
       $(this).attr('src','img/oui.png');
      $(this).parent().parent().parent().appendTo($("#done"));
     }
-  }
+  
+    }
+
   //Si la tache est 'done'
   else if(src=== 'img/oui.png')
   {

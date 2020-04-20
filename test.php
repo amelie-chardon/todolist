@@ -45,7 +45,7 @@ if($_SESSION['user']->isConnected()!==true)
       <?php
       $i=0;
       $connect=mysqli_connect('localhost', 'root', '','tdl');
-      $select="SELECT id,titre,date_creation,description,etat FROM taches WHERE etat = 'todo' ";
+      $select="SELECT id, titre,date_creation,description,etat FROM taches WHERE etat = 'todo' ";
       $query=mysqli_query($connect,$select);
       $fetch=mysqli_fetch_all($query);
       
@@ -53,6 +53,16 @@ if($_SESSION['user']->isConnected()!==true)
 
         foreach ($fetch as list($id_taches,$titre,$date,$description,$etat)){
       
+     /* $select="SELECT id,etat FROM taches WHERE  `taches`.`id` = $id_taches";
+      $query=mysqli_query($connect,$select);
+      $fetch=mysqli_fetch_all($query);
+
+      var_dump($fetch);
+      if($etat=="todo"){
+          $update="UPDATE `taches` SET `etat` = 'done' WHERE `taches`.`id` = $id_taches";
+          $query=mysqli_query($connect,$update);
+     
+      */
       ?>
       <section class="tache">
       
@@ -70,8 +80,8 @@ if($_SESSION['user']->isConnected()!==true)
       
       <?php 
       }
-      
     }
+    
     else
     {
      
@@ -88,20 +98,27 @@ if($_SESSION['user']->isConnected()!==true)
         </section>
      
     </section> 
+<?php
+    $connect=mysqli_connect('localhost', 'root', '','tdl');
+      $select="SELECT etat FROM taches WHERE  `taches`.`id` = $id_taches";
+      $query=mysqli_query($connect,$select);
+      $fetch=mysqli_fetch_all($query);
+      var_dump($fetch);
 
+    ?>
     
     <section class="colonne" id="done">
       <h2>Done</h2>
       <?php
       $i=0;
       $connect=mysqli_connect('localhost', 'root', '','tdl');
-      $select="SELECT id,titre,date_creation,description,etat FROM taches WHERE etat = 'done' ";
+      $select="SELECT titre,date_creation,description,etat FROM taches WHERE etat = 'done' ";
       $query=mysqli_query($connect,$select);
       $fetch=mysqli_fetch_all($query);
       
       if($fetch==true){
 
-        foreach ($fetch as list($id_taches,$titre,$date,$description,$etat)){
+        foreach ($fetch as list($titre,$date,$description,$etat)){
       
       ?>
 

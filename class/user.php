@@ -143,9 +143,12 @@ class user extends bdd{
             foreach ($fetch as list($id_taches,$etat)){
 
             if($etat=="todo"){
-                $this->execute("UPDATE `taches` SET `etat` = 'done' WHERE `taches`.`id` = $id_taches");
+                $update="UPDATE `taches` SET `etat` = 'done' WHERE `taches`.`id` = $id_taches";
+                $query=mysqli_query($connect,$update);
             }else{
-                $this->execute("UPDATE `taches` SET `etat` = 'todo' WHERE `taches`.`id` = $id_taches");
+                $update="UPDATE `taches` SET `etat` = 'todo' WHERE `taches`.`id` = $id_taches";
+                $query=mysqli_query($connect,$update);
+                
             }
         }
             

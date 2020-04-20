@@ -179,8 +179,19 @@ $('.section_wrap_col').on("click", ".tache", function(){
   });
 
 
-//Quand on clique sur l'icone d'une tâche
-$('.section_wrap_col').on("click", ".icone",function change_etat(){
+//Quand on clique sur l'icone "todo" ou "donne" d'une tâche
+$('.section_wrap_col').on("click", "#modify",function change_etat(){
+  
+  //On update la bdd via la fonction "change_etat"
+  $.post(
+    //Page vers laquelle est envoyée la requête
+    'changement_etat_tache.php',
+    {
+      //Récupération des inputs du formulaires
+      id_tache : $(this).parent().parent().parent().attr("id"),
+    });
+  
+  
   //On récupère la source de l'image
   var src = ($(this).attr('src'))
   //Si la tache est 'to do'
@@ -214,6 +225,27 @@ $('.section_wrap_col').on("click", ".icone",function change_etat(){
       $(this).parent().parent().parent().appendTo($("#todo"));
     }
   }
+});
+
+//Quand on clique sur l'icone "gomme" d'une tâche
+$('.section_wrap_col').on("click", "#suppr",function (){
+  
+  //Si l'utilisateur veut la marquer 'todo'
+  if(confirm("Supprimer cette tâche ?"))
+    {
+      //On update la bdd via la fonction "suppression_tache"
+      $.post(
+        //Page vers laquelle est envoyée la requête
+        'suppression_tache.php',
+        {
+          //Récupération des inputs du formulaires
+          id_tache : $(this).parent().parent().parent().attr("id"),
+        });
+
+      //On supprime la tâche dans le tableau
+      $(this).parent().parent().parent().remove();
+      
+      }
 });
 
 //TODO : rendre "draggable" les taches pour les passer d'une colonne à une autre

@@ -76,7 +76,7 @@ class user extends bdd{
         $this->prenom = NULL;
     }
 
-    public function tache($titre,$description){
+    public function creation_tache($titre,$description){
         //TODO : gérer l'enregistrement des tâches pour que l'utilisateur connecté puisse retrouver son tableau lors de la prochaine connexion (charger les taches selon la colonne dans todolist.php)
         if($titre!= NULL && $description!= NULL){
             $this->connect();
@@ -105,18 +105,25 @@ class user extends bdd{
         return $fetch;
     }
 
-    public function change_etat ($id_taches,$etat){
+    public function change_etat ($id_taches){
         //passage du todo -> done & done->todo
         $this->connect();
         $fetch=$this->execute("SELECT id,etat FROM taches WHERE `taches`.`id` = $id_taches");
-        foreach ($fetch as list($id_taches,$etat)){
+        foreach ($fetch as list($id_taches,$etat))
+        {
             if($etat=="todo"){
                 $update=$this->execute("UPDATE `taches` SET `etat` = 'done' WHERE `taches`.`id` = $id_taches");
             }else{
                 $update=$this->execute("UPDATE `taches` SET `etat` = 'todo' WHERE `taches`.`id` = $id_taches");
-                }
             }
         }
+    }
+
+    public function suppression_tache($id_taches){
+        //Supression d'une tache dans la bdd
+        $this->connect();
+        $this->execute("DELETE from taches WHERE id=$id_taches");
+    }
 
 
     //FONCTIONS GET//

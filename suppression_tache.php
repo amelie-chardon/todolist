@@ -12,9 +12,9 @@ if(!isset($_SESSION['user'])){
   $_SESSION['user'] = new user();
 }
 
-if(isset($_POST['titre'])){
+if(isset($_POST['id_tache'])){
     ?>
-    <div id="result"><?php echo ($_SESSION["user"]->creation_tache($_POST['titre'],$_POST['description']));?></div>
+    <div id="result"><?php echo ($_SESSION["user"]->suppression_tache($_POST['id_tache']));?></div>
     <?php
 }
 ?>

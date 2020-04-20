@@ -47,13 +47,13 @@ if($_SESSION['user']->isConnected()!==true)
         foreach ($fetch as list($id_taches,$titre,$date,$description,$etat))
         {
         ?>
-        <section class="tache">
+        <section class="tache" id="<?php echo $id_taches; ?>">
           <div class="info_tache">
             <p><?php echo $titre;?></p>
-            <p class="etat"><img class="icone" src="img/non.png"></p>
+            <p class="etat"><img class="icone" id="suppr" src="img/suppr.png"><img class="icone" id="modify" src="img/non.png"></p>
           </div>
           <div class="descr_tache">
-            <p class="date_creation">Créée le :<?php echo $date;?></p>
+            <p class="date_creation">Créée le : <?php echo $date;?></p>
             <p class="etat_txt">Etat : <?php echo $etat;?></p>
             <p class="description">Description : <?php echo $description;?></p>
           </div>
@@ -80,13 +80,13 @@ if($_SESSION['user']->isConnected()!==true)
         foreach ($fetch2 as list($id_taches,$titre,$date,$description,$etat))
         {
         ?>
-        <section class="tache">
+        <section class="tache" id="<?php echo $id_taches; ?>">
           <div class="info_tache">
             <p><?php echo $titre;?></p>
-            <p class="etat"><img class="icone" src="img/oui.png"></p>
+            <p class="etat"><img class="icone" id="suppr" src="img/suppr.png"><img class="icone" id="modify" src="img/oui.png"></p>
           </div>
           <div class="descr_tache">
-            <p class="date_creation">Créée le :<?php echo $date;?></p>
+            <p class="date_creation">Créée le : <?php echo $date;?></p>
             <p class="etat_txt">Etat : <?php echo $etat;?></p>
             <p class="description">Description : <?php echo $description;?></p>
           </div>

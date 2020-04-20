@@ -145,7 +145,7 @@ $("#formtache").click(function new_tache(){
 
         if(result=="ok"){
           //On ajoute la tâche au tableau
-          $("#todo").append("<section class='tache'><div class='info_tache'><p class='titre'>"+tit+"</p><p class='etat'><img class='icone' src='img/non.png'></p></div><div class='descr_tache'><p class='date_creation'>Créée le : "+date+"</p><p class='etat_txt'>Etat : en cours</p><p class='description' style>"+descr+"</p></div></section>");
+          $("#todo").append("<section class='tache'><div class='info_tache'><p class='titre'>"+tit+"</p><p class='etat'><img class='icone' id='suppr' src='img/suppr.png'><img class='icone' id='modify' src='img/non.png'></p></div><div class='descr_tache'><p class='date_creation'>Créée le : "+date+"</p><p class='etat_txt'>Etat : en cours</p><p class='description' style>"+descr+"</p></div></section>");
 
           //$(".description").hide();
           //$("#todo").append($("<section>",{class:"tache"}));

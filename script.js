@@ -180,7 +180,7 @@ $('.section_wrap_col').on("click", ".tache", function(){
 
 
 //Quand on clique sur l'icone d'une tâche
-$('.section_wrap_col').on("click", ".icone",function(){
+$('.section_wrap_col').on("click", ".icone",function change_etat(){
   //On récupère la source de l'image
   var src = ($(this).attr('src'))
   //Si la tache est 'to do'
@@ -199,6 +199,7 @@ $('.section_wrap_col').on("click", ".icone",function(){
      $(this).parent().parent().parent().appendTo($("#done"));
     }
   }
+
   //Si la tache est 'done'
   else if(src=== 'img/oui.png')
   {

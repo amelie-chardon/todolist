@@ -39,31 +39,68 @@ if($_SESSION['user']->isConnected()!==true)
   <section class="section_wrap_col">
     <section class="colonne" id="todo">
       <h2>To-Do</h2>
-      <section class="tache">
+
+      <?php
+      $fetch=$_SESSION["user"]->recup_tache_todo();
+
+      if($fetch!==null){
+        foreach ($fetch as list($id_taches,$titre,$date,$description,$etat))
+        {
+        ?>
+        <section class="tache">
           <div class="info_tache">
-            <p>Nom tâche</p>
+            <p><?php echo $titre;?></p>
             <p class="etat"><img class="icone" src="img/non.png"></p>
           </div>
           <div class="descr_tache">
-            <p class="date_creation">Créée le : 10/04/2020</p>
-            <p class="etat_txt">Etat : en cours</p>
-            <p class="description">Description : blabla</p>
+            <p class="date_creation">Créée le :<?php echo $date;?></p>
+            <p class="etat_txt">Etat : <?php echo $etat;?></p>
+            <p class="description">Description : <?php echo $description;?></p>
           </div>
-      </section>
-    </section>
+        </section>
+        <?php 
+        }
+      }
+      else
+      {
+      ?>
+        <p>Pas de tache en cours !</p>
+      <?php
+     }
+     ?>
+    </section> 
+
+    
     <section class="colonne" id="done">
       <h2>Done</h2>
-      <section class="tache">
+      <?php
+      $fetch2=$_SESSION["user"]->recup_tache_done();
+
+      if($fetch2!==null){
+        foreach ($fetch2 as list($id_taches,$titre,$date,$description,$etat))
+        {
+        ?>
+        <section class="tache">
           <div class="info_tache">
-            <p>Nom tâche</p>
+            <p><?php echo $titre;?></p>
             <p class="etat"><img class="icone" src="img/oui.png"></p>
           </div>
           <div class="descr_tache">
-            <p class="date_creation">Créée le : 08/04/2020</p>
-            <p class="etat_txt">Etat : terminée le 12/04/2020</p>
-            <p class="description">Description : blabla</p>
+            <p class="date_creation">Créée le :<?php echo $date;?></p>
+            <p class="etat_txt">Etat : <?php echo $etat;?></p>
+            <p class="description">Description : <?php echo $description;?></p>
           </div>
-      </section>
+        </section>
+        <?php 
+        } 
+      }
+      else
+      {
+      ?>
+        <p>Aucune tâche terminée !</p>
+      <?php
+      }  
+      ?>
     </section>
   </section>
 

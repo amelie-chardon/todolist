@@ -1,11 +1,17 @@
 <?php
 
 class user extends bdd{
-
+//user
     private $id = NULL;
     private $mail = NULL;
     private $prenom = NULL;
     private $nom = NULL;
+   //taches
+    private $id_taches = NULL;
+    private $etat = NULL;
+    private $titre = NULL;
+    private $description = NULL;
+    private $date = NULL;
 
 
     public function inscription($prenom,$nom,$mdp,$confmdp,$mail){
@@ -70,10 +76,11 @@ class user extends bdd{
         $this->prenom = NULL;
     }
 
-    public function tache($titre,$description){
+    public function creation_tache($titre,$description){
+        //TODO : gérer l'enregistrement des tâches pour que l'utilisateur connecté puisse retrouver son tableau lors de la prochaine connexion (charger les taches selon la colonne dans todolist.php)
         if($titre!= NULL && $description!= NULL){
-            //$this->connect();
-            //$this->execute("INSERT INTO taches (id_utilisateurs,titre,date_creation,description) VALUES('$this->id','$titre',NOW(),'$description')");
+            $this->connect();
+            $this->execute("INSERT INTO taches (id_utilisateurs,titre,date_creation,description) VALUES('$this->id','$titre',NOW(),'$description')");
             return "ok";
         }
         else
@@ -81,6 +88,43 @@ class user extends bdd{
             return "empty";
         };
     }
+
+    public function recup_tache_todo(){
+        //Recupération données dans la BDD des TODO en cours
+        $this->connect();
+        $id_utilisateur=$this->getid();
+        $fetch=$this->execute("SELECT taches.id,titre,date_creation,description,etat FROM taches INNER JOIN utilisateurs ON taches.id_utilisateurs=utilisateurs.id WHERE etat = 'todo' AND id_utilisateurs=$id_utilisateur");
+        return $fetch;
+    }
+
+    public function recup_tache_done(){
+        //Recupération données dans la BDD des TODO en cours
+        $this->connect();
+        $id_utilisateur=$this->getid();
+        $fetch=$this->execute("SELECT taches.id,titre,date_creation,description,etat FROM taches INNER JOIN utilisateurs ON taches.id_utilisateurs=utilisateurs.id WHERE etat = 'done' AND id_utilisateurs=$id_utilisateur");
+        return $fetch;
+    }
+
+    public function change_etat ($id_taches){
+        //passage du todo -> done & done->todo
+        $this->connect();
+        $fetch=$this->execute("SELECT id,etat FROM taches WHERE `taches`.`id` = $id_taches");
+        foreach ($fetch as list($id_taches,$etat))
+        {
+            if($etat=="todo"){
+                $update=$this->execute("UPDATE `taches` SET `etat` = 'done' WHERE `taches`.`id` = $id_taches");
+            }else{
+                $update=$this->execute("UPDATE `taches` SET `etat` = 'todo' WHERE `taches`.`id` = $id_taches");
+            }
+        }
+    }
+
+    public function suppression_tache($id_taches){
+        //Supression d'une tache dans la bdd
+        $this->connect();
+        $this->execute("DELETE from taches WHERE id=$id_taches");
+    }
+
 
     //FONCTIONS GET//
 
@@ -108,6 +152,22 @@ class user extends bdd{
         return $this->nom;
     }
 
+    public function getEtat(){
+        return $this->etat;
+    }
+
+    public function gettitre(){
+        return $this->titre;
+    }
+    public function getdate(){
+        return $this->date;
+    }
+    public function getdescription(){
+        return $this->description;
+    }
+    public function getid_taches(){
+        return $this->id_taches;
+    }
 
 }
 ?>

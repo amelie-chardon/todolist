@@ -50,7 +50,10 @@ if($_SESSION['user']->isConnected()!==true)
         <section class="tache" id="<?php echo $id_taches; ?>">
           <div class="info_tache">
             <p><?php echo $titre;?></p>
-            <p class="etat"><img class="icone" id="suppr" src="img/suppr.png"><img class="icone" id="modify" src="img/non.png"></p>
+            <p class="etat">
+              <img class="icone" id="suppr" src="img/suppr.png">
+              <img class="icone" id="modify" src="img/non.png">
+            </p>
           </div>
           <div class="descr_tache">
             <p class="date_creation">Créée le : <?php echo $date;?></p>
@@ -83,7 +86,10 @@ if($_SESSION['user']->isConnected()!==true)
         <section class="tache" id="<?php echo $id_taches; ?>">
           <div class="info_tache">
             <p><?php echo $titre;?></p>
-            <p class="etat"><img class="icone" id="suppr" src="img/suppr.png"><img class="icone" id="modify" src="img/oui.png"></p>
+            <p class="etat">
+              <img class="icone" id="suppr" src="img/suppr.png">
+              <img class="icone" id="modify" src="img/oui.png">
+            </p>
           </div>
           <div class="descr_tache">
             <p class="date_creation">Créée le : <?php echo $date;?></p>

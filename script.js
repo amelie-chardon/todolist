@@ -27,13 +27,11 @@ $("#formconnexion").click(function(){
         //On récupère le résultat de la connexion et le prénom depuis connexion.php
         result=$(data).filter("div#result").html();
 
-        //TODO : ajouter conditions messages erreur
-
         if(result=="Succes"){
+          //On renvoie la page 'todolist'
           $(".formulaire").empty();
           $("#resultat").empty();
           document.location.href="todolist.php"
-          //$("#resultat").html("<p>Vous avez été connecté avec succès !</p>");
         }
         else if(result=="Echec"){
           $(".text").empty();
@@ -93,24 +91,12 @@ $(".formulaire").html(forminscription);
 
 //--TODOLIST--//
 
-/*
-//Action de cliquer sur le bouton "nouvelle liste"
-$("#formliste").click(function new_liste(){
-  //On demande à l'utilisateur d'entrer le nom de la liste à créer
-  var nom = prompt("Nom de la liste", "Nouvelle liste");
-  var titre="<h2>"+nom+"</h2>"
-  $(".section_wrap_col").append($("<section>",{class:"colonne"}));
-  $(".section_wrap_col .colonne:last-child" ).append(titre);
-});
-*/
-
 //Action de cliquer sur le bouton "nouvelle tâche"
 $("#formtache").click(function new_tache(){
   
   //On masque le tableau
   $(".section_wrap_col").hide();
   $(".boutons").hide();
-
 
   //Ajout du formulaire de création de tâche
   $("h1").html("Nouvelle tâche");
@@ -133,37 +119,20 @@ $("#formtache").click(function new_tache(){
       function(data){
         //On récupère le résultat de la connexion et le prénom depuis connexion.php
         result=$(data).filter("div#result").html();
-        //TODO : ajouter conditions messages erreur
-
         date=new Date();
-        jour=date.getDate();
-        mois=date.getMonth()+1;
         date=date.toLocaleDateString();
         tit=$("#titre").val();
         descr=$("#description").val()
 
-
         if(result=="ok"){
           //On ajoute la tâche au tableau
           $("#todo").append("<section class='tache'><div class='info_tache'><p class='titre'>"+tit+"</p><p class='etat'><img class='icone' id='suppr' src='img/suppr.png'><img class='icone' id='modify' src='img/non.png'></p></div><div class='descr_tache'><p class='date_creation'>Créée le : "+date+"</p><p class='etat_txt'>Etat : en cours</p><p class='description' style>"+descr+"</p></div></section>");
-
-          //$(".description").hide();
-          //$("#todo").append($("<section>",{class:"tache"}));
-          //$("#todo:last-child").append($("<div>",{class:"info_tache"}));
-          //$(".tache").append($("<div>",{class:"info_tache"}));
-          //$(".info_tache").last().append($("<p>",{class:"date", text:date}));
-          //$(".info_tache").append($("<p>",{class:"date"}));
-          //$(".info_tache").append($("<p>:</p>"));
-          //$(".info_tache").append($("<p>",{class:"nom_tache"}));
-          //$(".tache").append($("<p>",{class:"etat"}));
-          //$(".etat").append($("<img>",{class:"icone",src:"img/non.png"}));
 
           //On masque le formulaire et on affiche le tableau
           $("h1").html("Mon tableau");
           $(".new_tache").hide();
           $(".section_wrap_col").show();
           $(".boutons").show();
-    
         }
         else if(result=="empty"){
           $(".new_tache").prepend("<p>Veuillez remplir tous les champs.</p>");
@@ -171,16 +140,16 @@ $("#formtache").click(function new_tache(){
       },
    );
   });
-  });
+});
 
 //Quand on clique sur une tâche
 $('.section_wrap_col').on("click", ".tache", function(){
   $(this).children(".descr_tache").toggle();
-  });
+});
 
 
 //Quand on clique sur l'icone "todo" ou "donne" d'une tâche
-$('.section_wrap_col').on("click", "#modify",function change_etat(){
+$('.section_wrap_col').on("click", "#modify",function (){
   
   //On update la bdd via la fonction "change_etat"
   $.post(
@@ -248,6 +217,3 @@ $('.section_wrap_col').on("click", "#suppr",function (){
       }
 });
 
-//TODO : rendre "draggable" les taches pour les passer d'une colonne à une autre
-
-//TODO (optionnel) : ajouter gestion par plusieurs utilisateurs
